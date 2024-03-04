@@ -50,7 +50,6 @@ class Product(models.Model):
     seller_id = models.ForeignKey(SellerModel,on_delete=models.CASCADE)
     subcategory_id = models.ForeignKey(SubCategoryModel,on_delete=models.CASCADE,null=True)
     images = models.ManyToManyField('ProductImage', related_name='products', blank=True, null=True,on_delete=models.CASCADE)
-    adshdgsdhas
     def __str__(self):
         return self.product_title
 
