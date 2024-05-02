@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Urban Trends-Review</title>
+</head>
+<body>
+
+  <div class="container mt-5">
+    {% for product in product %}
+    <div class="row">
+      <div class="col-md-5 border-end">
+
+
+        <p> <img src="{{ img.product_image1.url }}" style="width: 400px;height: 400px;"></p>
+         
+
+
+        <hr>
+
+        <ul class="disk">
+          <li  class="my-2">Product Name: {{product.product_title}}</li>
+          <li  class="my-2">Description: {{product.product_description}}</li>
+          <li  class="my-2">Price: {{product.product_price}}</li>
+
+        </ul>
+
+
+      </div>
+      <div class="col-md-5">
+
+<h5>Add your review</h5>
+        <p class="mt-5"><i class="bi bi-person-check-fill"></i>{{order.user_id}} </p>
+        <form method="POST">
+          {% csrf_token %}
+        <p> <input type="text" name="review" class="form-control w-100" style="height: 200px;"></p>
+        <input type="submit" value="Submit" class="btn btn-success w-50">
+          </form>
+
+      </div>
+{% endfor %}
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
+
+</body>
+</html>

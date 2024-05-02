@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'address.css' %}">
+</head>
+<body>
+{% if user %}
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="container">
+        <div class="main-body">
+            <div class="row gutters-sm">
+                <div class="col-md-4 mb-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="d-flex flex-column align-items-center text-center">
+                                <!-- Input field for file upload -->
+
+
+                                <!-- Image tag to display the current user image -->
+                                <img src="{{ user.user_image.url }}" alt="User" class="rounded-circle" width="150">
+
+                                <div class="mt-3">
+                                    <h4>{{ user.username }}</h4>
+                                </div>
+                                <div>
+                                    <a href="{% url 'add_address' %}" >Add Address</a>
+                                </div>
+
+
+
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="col-md-8">
+                    <div class="card mb-3">
+                        {% for x in address %}
+
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0">Address Type</h6>
+                                </div>
+                                 <div class="col-sm-9 text-secondary">
+                                    <i>{{ x.user_address_type }}</i>
+                                </div>
+                            </div>
+                            <hr>
+
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0">Address</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                    <i>{{ x.user_address }}</i>
+                                </div>
+                            </div>
+                            <hr>
+                             <div class="row">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0">Location</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                    <i>{{ x.user_location }}</i>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0">Pincode</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                    <i>{{ x.user_pincode }}</i>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0">City</h6>
+                                </div>
+                                 <div class="col-sm-9 text-secondary">
+                                    <i>{{ x.user_city }}</i>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0">District</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                    <i>{{ x.user_district }}</i>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0">State</h6>
+                                </div>
+                                 <div class="col-sm-9 text-secondary">
+                                    <i>{{ x.user_state }}</i>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0">Landmark</h6>
+                                </div>
+                                 <div class="col-sm-9 text-secondary">
+                                    <i>{{ x.user_landmark }}</i>
+                                </div>
+                            </div>
+                            <hr>
+
+                            <div class="row d-flex m-2 bg-transparent">
+                             <div class="m-2">
+                            <a href="update_address/{{ x.address_id }}" class="btn btn-info">Update</a>
+                        </div>
+                        <div class="m-2">
+                            <a href="remove_address/{{ x.address_id }}" class="btn btn-danger">Remove</a>
+                        </div>
+                        </div>
+                        </div>
+
+
+                        {% endfor %}
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+{% endif %}
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

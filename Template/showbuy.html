@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Orders</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <style>
+        /* Custom styles */
+        .card {
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: box-shadow 0.3s ease;
+        }
+        .card:hover {
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+        .card-title {
+            color: #333;
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        .card-text {
+            color: #666;
+            font-size: 1rem;
+        }
+        .card-img-top {
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            object-fit: cover;
+            height: 200px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container mt-5">
+    <h1 class="mb-4">My Orders</h1>
+    <div class="row">
+
+            {% for item in data %}
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+
+                        <img src="{{ item.img.product_image1.url }}" class="card-img-top" alt="Product Image">
+
+                        <div class="card-body">
+                            <h5 class="card-title">{{ item.items.product_id.product_title }}</h5>
+                            <p class="card-text">{{ item.items.product_id.product_description }}</p>
+                            <p class="card-text">Price: ₹{{ item.items.product_id.product_price }}</p>
+                            <p class="card-text">Quantity: {{ item.items.quantity }}</p>
+                            <p class="card-text">Order Date: {{ item.items.date }}</p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-c3O+Hz3pLlA1Rpk3L1GikTnZN2UQ6CZbRTuk+7Aaa3kMDeeT+4i4BDA2RUqkuQbJ"
+        crossorigin="anonymous"></script>
+</body>
+</html>

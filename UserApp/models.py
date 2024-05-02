@@ -1,5 +1,9 @@
 from django.db import models
 from SellerApp.models import *
+from UserApp.models import *
+from datetime import datetime
+
+
 
 
 # Create your models here.
@@ -9,7 +13,7 @@ class UserModel(models.Model):
     password = models.CharField(max_length=100)
     phone_number = models.CharField(max_length=13)
     email = models.EmailField()
-    user_image = models.ImageField(upload_to='user/')
+    user_image = models.ImageField(upload_to='user/',null=True)
     create_at = models.DateTimeField()
     status = models.BooleanField(default=True)
 
@@ -55,12 +59,24 @@ class BuyProduct(models.Model):
         db_table = 'buy_product_table'
 
 
+class WishlistModel(models.Model):
+    wishlist_id = models.AutoField(primary_key=True)
+    product_id = models.ForeignKey(Product, on_delete=models.CASCADE)
+    user_id = models.ForeignKey(UserModel,on_delete=models.CASCADE)
+
+    class Meta:
+        db_table = 'wishlist_table'
+
+
+
 class CartModel(models.Model):
     cart_id = models.AutoField(primary_key=True)
     product_id = models.ForeignKey(Product, on_delete=models.CASCADE)
     user_id = models.ForeignKey(UserModel, on_delete=models.CASCADE)
     quantity = models.IntegerField()
+    size = models.CharField(max_length=5, null=True)
     datetime = models.DateTimeField(auto_created=True)
+
 
     class Meta:
         db_table = 'cart_table'

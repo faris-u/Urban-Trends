@@ -1,4 +1,5 @@
 from django.db import models
+from UserApp .models import *
 
 
 # Create your models here.
@@ -49,7 +50,7 @@ class Product(models.Model):
     product_price = models.CharField(max_length=100)
     seller_id = models.ForeignKey(SellerModel,on_delete=models.CASCADE)
     subcategory_id = models.ForeignKey(SubCategoryModel,on_delete=models.CASCADE,null=True)
-    images = models.ManyToManyField('ProductImage', related_name='products', blank=True, null=True,on_delete=models.CASCADE)
+    images = models.ManyToManyField('ProductImage', related_name='images', blank=True)
     def __str__(self):
         return self.product_title
 
@@ -59,8 +60,12 @@ class Product(models.Model):
 
 class ProductImage(models.Model):
     product_image_id = models.AutoField(primary_key=True)
-    product_image = models.ImageField(upload_to='seller/')
-    product_id = models.ForeignKey(Product, on_delete=models.CASCADE)
+    product_image1 = models.ImageField(upload_to='seller/' ,null=True)
+    product_image2 = models.ImageField(upload_to='seller/' ,null=True)
+    product_image3 = models.ImageField(upload_to='seller/' ,null=True)
+    product_image4 = models.ImageField(upload_to='seller/' ,null=True)
+
+    product_id = models.ForeignKey(Product, on_delete=models.CASCADE,null=True)
 
     def __str__(self):
         return str(self.product_id)
@@ -72,10 +77,13 @@ class ProductImage(models.Model):
 class Size(models.Model):
     size_id = models.AutoField(primary_key=True)
     size = models.CharField(max_length=50)
-    product_id = models.ForeignKey(Product, on_delete=models.CASCADE)
+    product_id = models.ForeignKey(Product, on_delete=models.CASCADE,null=True)
+
+
+
 
     def __str__(self):
-        return self.size
+        return (self.size)
 
     class Meta:
         db_table = 'size_table'

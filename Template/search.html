@@ -68,39 +68,50 @@
               </div>
           </div>
       </div>
+{% if products %}
+  {% for product in products %}
+    <div class="r m-5 d-flex"> <!-- Wrapper for product card -->
+      <div class="col-xxl-3 col-xl-3 col-lg-4 col-md-6 col-sm-6 w-72 bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl m-3">
+        <a href="product_view/{{ product.product_id }}" style="text-decoration: none; transition: text-decoration 0.3s ease;">
+          <!-- Display the product's first image -->
+          <img src="{{ product.productimage_set.first.product_image1.url }}" alt="Product" class="h-80 w-72 object-cover rounded-t-xl" />
 
+          <!-- Product title and price -->
+          <div class="px-4 py-3 w-72"> <!-- Padding and fixed width -->
+            <p class="text-lg font-bold text-black truncate block capitalize">{{ product.product_title }}</p> <!-- Product title -->
+            <div class="flex items-center"> <!-- Container for price and icons -->
+              <p class="text-lg font-semibold text-black cursor-auto my-3">{{ product.product_price }}</p> <!-- Product price -->
 
-<div class="r m-5">
-        {% for x in data %}
+              <del>
+                <p class="text-sm text-gray-600 cursor-auto ml-2"></p> <!-- Placeholder for a discounted price (if any) -->
+              </del>
 
-          <div class="w-72 bg-white shadow-md rounded-xl duration-500 hover:scale-105 hover:shadow-xl m-3">
-    <a href="product_view/{{ x.id }}" style="text-decoration: none; transition: text-decoration 0.3s ease;">
-        <img src="{{ x.image_url }}" alt="Product" class="h-80 w-72 object-cover rounded-t-xl" />
-        <div class="px-4 py-3 w-72">
-            <p class="text-lg font-bold text-black truncate block capitalize">{{ x.title }}</p>
-            <div class="flex items-center">
-                <p class="text-lg font-semibold text-black cursor-auto my-3">{{ x.price }}</p>
-                <del>
-                    <p class="text-sm text-gray-600 cursor-auto ml-2"></p>
-                </del>
-                <div class="ml-auto">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
-                        class="bi bi-bag-plus" viewBox="0 0 16 16">
-                        <path fill-rule="evenodd"
-                            d="M8 7.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V12a.5.5 0 0 1-1 0v-1.5H6a.5.5 0 0 1 0-1h1.5V8a.5.5 0 0 1 .5-.5z" />
-                        <path
-                            d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5z" />
-                    </svg>
-                </div>
+              <!-- SVG icon for adding to cart or similar action -->
+              <div class="ml-auto"> <!-- Aligns SVG to the far right -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-bag-plus" viewBox="0 0 16 16">
+                  <path fill-rule="evenodd" d="M8 7.5a.5.5 0 0 1 .5.5v1.5H10a.5.5 0 0 1 0 1H8.5V12a.5.5 0 0 1-1 0v-1.5H6a.5.5 0 0 1 0-1h1.5V8a.5.5 0 0 1 .5-.5z" />
+                  <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5z" />
+                </svg>
+              </div>
             </div>
-        </div>
-    </a>
-</div>
-
-
-
-        {% endfor %}
+          </div>
+        </a>
+      </div>
     </div>
+  {% endfor %}
+{% else %}
+  <!-- Content to display if there are no products -->
+  <div class="flex justify-center items-center">
+    <p>No products available at the moment.</p>
+       <img src="{% static 'not_found.jpg' %}">
+  </div>
+{% endif %}
+
+
+
+
+
+
 
 
   </body>
