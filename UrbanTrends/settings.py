@@ -74,16 +74,28 @@ WSGI_APPLICATION = 'UrbanTrends.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
+# DATABASES = {
+#
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'urban trends0',
+#         'USER': 'root',
+#         'PASSWORD': '',
+#         'HOST': '',
+#         'PORT': '',
+#     }
+# }
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'urban trends0',
-        'USER': 'root',
-        'PASSWORD': '',
-        'HOST': '',
-        'PORT': '',
+        'NAME': 'new_db',
+        'USER': 'newuser',
+        'PASSWORD': '12345678',
+        'HOST': 'database-1.cn26yuoukstw.ap-southeast-2.rds.amazonaws.com',
+        'PORT': '3306',
     }
 }
+
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
